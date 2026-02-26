@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Torneio</title>
+</head>
+<body>
+
+<h1>Fase: {{ fase }}</h1>
+
+{% if iniciado == False %}
+    <h2>Votação ainda não iniciada</h2>
+    <a href="/admin/iniciar">🚀 Iniciar Torneio (Admin)</a>
+{% else %}
+
+    <h3>Votos: {{ votos_atual }} / {{ max_votos }}</h3>
+
+    <form action="/votar" method="post">
+        <input type="text" name="nick" placeholder="Seu nick" required>
+        <br><br>
+
+        <button type="submit" name="escolha" value="esquerda">
+            <img src="{{ url_for('static', filename=confronto.esquerda.imagem) }}" width="200"><br>
+            {{ confronto.esquerda.nome }}
+        </button>
+
+        <button type="submit" name="escolha" value="direita">
+            <img src="{{ url_for('static', filename=confronto.direita.imagem) }}" width="200"><br>
+            {{ confronto.direita.nome }}
+        </button>
+    </form>
+
+{% endif %}
+
+</body>
+</html>

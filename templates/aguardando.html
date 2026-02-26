@@ -1,0 +1,13 @@
+<script>
+function verificar() {
+    fetch("/status")
+        .then(res => res.json())
+        .then(data => {
+            if (!data.campeao && data.confronto_atual !== undefined) {
+                window.location.href = "/votacao";
+            }
+        });
+}
+
+setInterval(verificar, 2000);
+</script>
